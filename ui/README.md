@@ -1,4 +1,4 @@
-# Swim Traffic Web UI
+# LocalX Network Tower Web UI
 
 ## Building
 

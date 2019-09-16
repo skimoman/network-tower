@@ -107,8 +107,8 @@ public class NetworkPlane extends AbstractPlane
 		    br.close();
 		}
 		
-		final RandomData rd = new RandomData(fabric, "warp://localhost:9001");
-	    rd.sendCommands();
+//		final RandomData rd = new RandomData(fabric, "warp://localhost:9001");
+//	    rd.sendCommands();
 		
 //		Thread.sleep(3000);
 //		kernel.stop();
