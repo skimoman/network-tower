@@ -32,9 +32,9 @@ export class VehicleFlowKpiViewController extends TrafficKpiViewController {
     this._nodeRef = nodeRef;
     this._trafficMapView = trafficMapView;
   }
-
+  
   get primaryColor(): Color {
-    return Color.parse("#00fafa");
+	return Color.parse("#00fafa");
   }
 
   updateKpi(): void {

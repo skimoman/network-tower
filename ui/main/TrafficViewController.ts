@@ -39,7 +39,7 @@ export class TrafficViewController extends HtmlViewController {
     this._map = new mapboxgl.Map({
       container: view.node,
       style: "mapbox://styles/swimit/cjs5h20wh0fyf1gocidkpmcvm",
-      center: {lng: -122.132534, lat: 37.461410}, 
+      center: {lng: -122.131562, lat: 37.461943}, 
       pitch: 70,
       zoom: 15.5,
     });

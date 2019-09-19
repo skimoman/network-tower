@@ -34,7 +34,7 @@ export class VehicleBackupKpiViewController extends TrafficKpiViewController {
   }
 
   get primaryColor(): Color {
-    return Color.parse("#d90c25");
+    return Color.parse("#EF84DB");
   }
 
   updateKpi(): void {

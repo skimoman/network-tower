@@ -23,7 +23,8 @@ export class TrafficMapView extends MapGraphicView {
 
   constructor() {
     super();
-    this.intersectionMarkerColor.setState(Color.parse("#00a6ed"));
+    this.intersectionMarkerColor.setState(Color.parse("#ff7b00"));
+	// Original Color: #00a6ed
     this.pedestrianMarkerColor.setState(Color.parse("#c200fa"));
     this.redLightColor.setState(Color.parse("#a50f21"));
     this.yellowLightColor.setState(Color.parse("#fccf20"));

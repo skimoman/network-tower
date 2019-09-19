@@ -92,18 +92,18 @@ export abstract class TrafficKpiViewController extends HtmlViewController {
         .color(primaryColor);
 
     const headerLeft = header.append("div");
-    this._title = headerLeft.append("span").display("block").text("Palo Alto — Pedestrian Backup");
-    this._subtitle = headerLeft.append("span").display("block").text("@ Crosswalks");
+    this._title = headerLeft.append("span").display("block").text("East Palo Alto — Connected Clients");
+    this._subtitle = headerLeft.append("span").display("block").text("@ Network Towers");
 
     const headerRight = header.append("div");
     headerRight.append("span").text("Real-Time");
 
     const body = view.append("div").key("body").position("relative").flexGrow(1).width("100%");
     const bodyCanvas = body.append("canvas").key("canvas");
-
+	
     const gauge = new GaugeView();
     bodyCanvas.append(gauge);
-
+	
     const innerDial = new DialView()
         .arrangement("manual")
         .innerRadius(Length.pct(34))
@@ -124,7 +124,7 @@ export abstract class TrafficKpiViewController extends HtmlViewController {
         .outerRadius(Length.pct(40))
         .cornerRadius(Length.pct(50))
         .tickRadius(Length.pct(45))
-        .font("12px \"Open Sans\", sans-serif")
+        .font("14px \"Open Sans\", sans-serif")
         .textColor(primaryColor);
     bodyCanvas.append(pie);
 

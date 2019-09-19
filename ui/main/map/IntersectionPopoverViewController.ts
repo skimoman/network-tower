@@ -59,7 +59,7 @@ export class IntersectionPopoverViewController extends PopoverViewController {
 
     this._chartChildView = {};
   }
-
+	
   didSetView(view: PopoverView): void {
     view.width(240)
         .height(360)
@@ -78,16 +78,16 @@ export class IntersectionPopoverViewController extends PopoverViewController {
       .alignItems('center');
     header.append("div")
       .borderRadius(20)
-      .backgroundColor('#00a6ed')
+      .backgroundColor('#28CA8C')
       .padding([3,6,3,6])
       .marginRight(5)
       .fontSize(15)
       .color("#000000")
-      .text(`${intersection.id}`);
+      .text("Tower #" + `${intersection.id}`);
     header.append("h2").key("name")
       .margin(0)
       .fontSize(15)
-      .color("#00a6ed")
+      .color("#28CA8C")
       .text(intersection.name);
 
     const status = view.append('ul')
@@ -99,10 +99,10 @@ export class IntersectionPopoverViewController extends PopoverViewController {
 
     this._latencyView = status.append('li')
       .display('inline-block')
-      .width(50)
-      .backgroundColor('#00a6ed')
-      .fontSize(11)
-      .lineHeight('1.5em')
+      .width(75)
+      .backgroundColor('#28CA8C')
+      .fontSize(12)
+      .lineHeight('2em')
       .borderRadius('20px')
       .marginRight(10)
       .text('746ms');
@@ -110,13 +110,13 @@ export class IntersectionPopoverViewController extends PopoverViewController {
 
     this._modeView = status.append('li')
       .display('inline-block')
-      .width(50)
-      .backgroundColor('#00a6ed')
-      .fontSize(11)
-      .lineHeight('1.5em')
+      .width(200)
+      .backgroundColor('#28CA8C')
+      .fontSize(12)
+      .lineHeight('2em')
       .borderRadius('20px')
-      .marginRight(10)
-      .text('--');
+      .marginRight(50)
+      .text('Location: EPA Park');
     this._modeView.setStyle('list-style', 'none');
 
     this._contentView = view.append('div')
@@ -128,7 +128,6 @@ export class IntersectionPopoverViewController extends PopoverViewController {
     // const footer = view.append('footer')
     //   .textAlign('right');
     // footer.append('span').text('test');
-
   }
 
   popoverDidShow(view: any): void {

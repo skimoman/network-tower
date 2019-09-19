@@ -32,7 +32,7 @@ export class PedestrianBackupKpiViewController extends TrafficKpiViewController 
   }
 
   get primaryColor(): Color {
-    return Color.parse("#fafa00");
+    return Color.parse("#52DA44");
   }
 
   updateKpi(): void {
