@@ -77,16 +77,16 @@ export class IntersectionPopoverViewController extends PopoverViewController {
       .display('flex')
       .alignItems('center');
     header.append("div")
-      .borderRadius(20)
+      .borderRadius(30)
       .backgroundColor('#28CA8C')
       .padding([3,6,3,6])
       .marginRight(5)
-      .fontSize(15)
-      .color("#000000")
+      .fontSize(18)
+      .color("#071013")
       .text("Tower #" + `${intersection.id}`);
     header.append("h2").key("name")
       .margin(0)
-      .fontSize(15)
+      .fontSize(18)
       .color("#28CA8C")
       .text(intersection.name);
 
@@ -108,6 +108,10 @@ export class IntersectionPopoverViewController extends PopoverViewController {
       .text('746ms');
     this._latencyView.setStyle('list-style', 'none');
 
+	function getLocation()
+	{
+		return "EPA Park";
+	}
     this._modeView = status.append('li')
       .display('inline-block')
       .width(200)
@@ -116,7 +120,7 @@ export class IntersectionPopoverViewController extends PopoverViewController {
       .lineHeight('2em')
       .borderRadius('20px')
       .marginRight(50)
-      .text('Location: EPA Park');
+      .text('Location: ' + getLocation());
     this._modeView.setStyle('list-style', 'none');
 
     this._contentView = view.append('div')
