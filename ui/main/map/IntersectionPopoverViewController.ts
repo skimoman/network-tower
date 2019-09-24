@@ -90,6 +90,31 @@ export class IntersectionPopoverViewController extends PopoverViewController {
       .color("#28CA8C")
       .text(intersection.name);
 
+	const coords = view.append("body")
+	  .display('flex')
+      .alignItems('center');
+    coords.append("div")
+      .borderRadius(20)
+      .backgroundColor('#28CA8C')
+      .padding([3,6,3,6])
+      .marginRight(5)
+      .fontSize(12)
+      .color("#071013")
+      .text("Coordinates: " + `${intersection.lat}` + ", "
+	  + `${intersection.lng}`);
+	  
+	const equip = view.append("body")
+	  .display('flex')
+      .alignItems('center');
+    equip.append("div")
+      .borderRadius(20)
+      .backgroundColor('#28CA8C')
+      .padding([3,6,3,6])
+      .marginRight(5)
+      .fontSize(12)
+      .color("#071013")
+      .text("(Equipment Details)");
+
     const status = view.append('ul')
       .display('flex')
       .alignItems('center')
@@ -108,19 +133,15 @@ export class IntersectionPopoverViewController extends PopoverViewController {
       .text('746ms');
     this._latencyView.setStyle('list-style', 'none');
 
-	function getLocation()
-	{
-		return "EPA Park";
-	}
     this._modeView = status.append('li')
       .display('inline-block')
-      .width(200)
+      .width(50)
       .backgroundColor('#28CA8C')
       .fontSize(12)
       .lineHeight('2em')
       .borderRadius('20px')
       .marginRight(50)
-      .text('Location: ' + getLocation());
+      .text('--');
     this._modeView.setStyle('list-style', 'none');
 
     this._contentView = view.append('div')
