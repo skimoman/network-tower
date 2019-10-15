@@ -89,7 +89,7 @@ export class IntersectionPopoverViewController extends PopoverViewController {
       .fontSize(18)
       .color("#28CA8C")
       .text(intersection.name);
-
+	  
 	const coords = view.append("body")
 	  .display('flex')
       .alignItems('center');
@@ -114,7 +114,19 @@ export class IntersectionPopoverViewController extends PopoverViewController {
       .fontSize(12)
       .color("#071013")
       .text("(Equipment Details)");
-
+	  
+	const rssi = view.append("body")
+	  .display('flex')
+      .alignItems('center');
+    rssi.append("div")
+      .borderRadius(20)
+      .backgroundColor('#28CA8C')
+      .padding([3,6,3,6])
+      .marginRight(5)
+      .fontSize(12)
+      .color("#071013")
+      .text("Rssi: " + Math.floor(Math.random() * -9) + 1);
+	
     const status = view.append('ul')
       .display('flex')
       .alignItems('center')
@@ -150,6 +162,48 @@ export class IntersectionPopoverViewController extends PopoverViewController {
       .flexGrow(1)
       .overflow('auto');
 
+	const canvas=  this._contentView!.append('div')
+        .height(100)
+        .append('canvas')
+        .position('relative');
+
+      const chart = new ChartView()
+        .bottomAxis("time")
+        .leftAxis("linear")
+        .bottomGesture(true)
+        .leftDomainPadding([0.1, 0.1])
+        .topGutter(0)
+        .rightGutter(0)
+        .bottomGutter(20)
+        .leftGutter(-1)
+        .domainColor("#4a4a4a")
+        .tickMarkColor("#4a4a4a")
+        .font("12px sans-serif")
+        .textColor("#4a4a4a");
+      canvas.append(chart);
+
+      const futureColor = Color.rgb('#6c6c6c').alpha(0.2);
+      const plot0 = new AreaGraphView()
+        .fill(futureColor);
+      chart.addPlot(plot0);
+
+      const plot1 = new LineGraphView()
+        .stroke(futureColor)
+        .strokeWidth(1);
+      chart.addPlot(plot1);
+
+      const plot2 = new LineGraphView()
+        .stroke("#00a6ed")
+        .strokeWidth(1);
+      chart.addPlot(plot2);
+
+      this._chartChildView[1] = {
+        chartVew: chart,
+        plot0View: plot0,
+        plot1View: plot1,
+        plot2View: plot2,
+      };
+	
     // const footer = view.append('footer')
     //   .textAlign('right');
     // footer.append('span').text('test');

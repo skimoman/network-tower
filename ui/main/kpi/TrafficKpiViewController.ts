@@ -92,7 +92,7 @@ export abstract class TrafficKpiViewController extends HtmlViewController {
         .color(primaryColor);
 
     const headerLeft = header.append("div");
-    this._title = headerLeft.append("span").display("block").text("East Palo Alto — Connected Clients");
+    this._title = headerLeft.append("span").display("block").text("East Palo Alto — Connected Devices");
     this._subtitle = headerLeft.append("span").display("block").text("@ Network Towers");
 
     const headerRight = header.append("div");

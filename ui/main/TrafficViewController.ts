@@ -20,8 +20,10 @@ import {MapboxView} from "@swim/mapbox";
 import {TrafficMapView} from "./map/TrafficMapView";
 import {TrafficMapViewController} from "./map/TrafficMapViewController";
 import {VehicleFlowKpiViewController} from "./kpi/VehicleFlowKpiViewController";
-import {VehicleBackupKpiViewController} from "./kpi/VehicleBackupKpiViewController";
+//import {VehicleBackupKpiViewController} from "./kpi/VehicleBackupKpiViewController";
 import {PedestrianBackupKpiViewController} from "./kpi/PedestrianBackupKpiViewController";
+import {ProspectiveDevicesKpiViewController} from "./kpi/ProspectiveDevicesKpiViewController";
+import {ActiveSessionsKpiViewController} from "./kpi/ActiveSessionsKpiViewController";
 
 export class TrafficViewController extends HtmlViewController {
   /** @hidden */
@@ -67,11 +69,14 @@ export class TrafficViewController extends HtmlViewController {
     // logo.append(this.createLogo());
 
     view.append(this.createKpiStack(trafficMapView));
+	view.append(this.createLeftStack(trafficMapView));
     this.layoutKpiStack();
+	this.layoutLeftStack();
   }
 
   viewDidResize(): void {
     this.layoutKpiStack();
+	this.layoutLeftStack();
   }
 
   protected createKpiStack(trafficMapView: TrafficMapView): HtmlView {
@@ -94,17 +99,28 @@ export class TrafficViewController extends HtmlViewController {
         .pointerEvents("auto");
     const vehicleFlowKpiViewController = new VehicleFlowKpiViewController(this._nodeRef, trafficMapView);
     vehicleFlowKpi.setViewController(vehicleFlowKpiViewController);
-
-    const vehicleBackupKpi = kpiStack.append("div")
-        .key("vehicleBackupKpi")
+	
+		const activeSessionsKpi = kpiStack.append("div")
+        .key("activeSessionsKpi")
         .position("absolute")
         .borderRadius(8)
         .boxSizing("border-box")
         .backgroundColor(Color.parse("#070813").alpha(0.33))
         .backdropFilter("blur(2px)")
         .pointerEvents("auto");
-    const vehicleBackupKpiViewController = new VehicleBackupKpiViewController(this._nodeRef, trafficMapView);
-    vehicleBackupKpi.setViewController(vehicleBackupKpiViewController);
+    const activeSessionsKpiViewController = new ActiveSessionsKpiViewController(this._nodeRef, trafficMapView);
+    activeSessionsKpi.setViewController(activeSessionsKpiViewController);
+
+    // const vehicleBackupKpi = kpiStack.append("div")
+        // .key("vehicleBackupKpi")
+        // .position("absolute")
+        // .borderRadius(8)
+        // .boxSizing("border-box")
+        // .backgroundColor(Color.parse("#070813").alpha(0.33))
+        // .backdropFilter("blur(2px)")
+        // .pointerEvents("auto");
+    // const vehicleBackupKpiViewController = new VehicleBackupKpiViewController(this._nodeRef, trafficMapView);
+    // vehicleBackupKpi.setViewController(vehicleBackupKpiViewController);
 
     const pedestrianBackupKpi = kpiStack.append("div")
         .key("pedestrianBackupKpi")
@@ -116,9 +132,37 @@ export class TrafficViewController extends HtmlViewController {
         .pointerEvents("auto");
     const pedestrianBackupKpiViewController = new PedestrianBackupKpiViewController(this._nodeRef, trafficMapView);
     pedestrianBackupKpi.setViewController(pedestrianBackupKpiViewController);
-
+	
+	const prospectiveDevicesKpi = kpiStack.append("div")
+        .key("prospectiveDevicesKpi")
+        .position("absolute")
+        .borderRadius(8)
+        .boxSizing("border-box")
+        .backgroundColor(Color.parse("#070813").alpha(0.33))
+        .backdropFilter("blur(2px)")
+        .pointerEvents("auto");
+    const prospectiveDevicesKpiViewController = new ProspectiveDevicesKpiViewController(this._nodeRef, trafficMapView);
+    prospectiveDevicesKpi.setViewController(prospectiveDevicesKpiViewController);
+	
     return kpiStack;
+	
   }
+  
+   protected createLeftStack(trafficMapView: TrafficMapView): HtmlView {
+	   const leftStack = HtmlView.fromTag("div")
+        .key("leftStack")
+        .position("absolute")
+        .left(0)
+        .top(300)
+        .bottom(0)
+        .zIndex(9)
+        .pointerEvents("none");
+		
+	   
+	
+	return leftStack;
+	
+   }
 
   protected layoutKpiStack(): void {
     const kpiMargin = 16;
@@ -145,6 +189,34 @@ export class TrafficViewController extends HtmlViewController {
       kpiStack.display("block");
     } else {
       kpiStack.display("none");
+    }
+  }
+  
+  protected layoutLeftStack(): void {
+	const leftMargin = 16;
+	
+	const view = this._view!;
+    const leftStack = view.getChildView("leftStack") as HtmlView;
+
+    const leftViews = leftStack.childViews;
+    const leftViewCount = leftViews.length;
+    const leftViewHeight = (view.node.offsetHeight - leftMargin * (leftViewCount + 1)) / (leftViewCount || 1);
+    const leftViewWidth = 1.5 * leftViewHeight;
+
+    const leftStackWidth = leftViewWidth + 2 * leftMargin;
+    leftStack.width(leftStackWidth);
+    for (let i = 0; i < leftViewCount; i += 1) {
+      const leftView = leftViews[i] as HtmlView;
+      leftView.left(leftMargin)
+             .top(leftViewHeight * i + leftMargin * (i + 1))
+             .width(leftViewWidth)
+             .height(leftViewHeight);
+    }
+
+    if (leftStackWidth > 240 && view.node.offsetWidth >= 2 * leftStackWidth) {
+      leftStack.display("block");
+    } else {
+      leftStack.display("none");
     }
   }
 

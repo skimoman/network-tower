@@ -19,3 +19,7 @@ export {VehicleFlowKpiViewController} from "./VehicleFlowKpiViewController";
 export {VehicleBackupKpiViewController} from "./VehicleBackupKpiViewController";
 
 export {PedestrianBackupKpiViewController} from "./PedestrianBackupKpiViewController";
+
+export {ProspectiveDevicesKpiViewController} from "./ProspectiveDevicesKpiViewController";
+
+export {ActiveSessionsKpiViewController} from "./ActiveSessionsKpiViewController";

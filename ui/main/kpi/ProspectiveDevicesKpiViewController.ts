@@ -19,7 +19,7 @@ import {MapGraphicView} from "@swim/map";
 import {IntersectionMapView} from "../map/IntersectionMapView";
 import {TrafficKpiViewController} from "./TrafficKpiViewController";
 
-export class PedestrianBackupKpiViewController extends TrafficKpiViewController {
+export class ProspectiveDevicesKpiViewController extends TrafficKpiViewController {
   /** @hidden */
   _nodeRef: NodeRef;
   /** @hidden */
@@ -32,7 +32,7 @@ export class PedestrianBackupKpiViewController extends TrafficKpiViewController 
   }
 
   get primaryColor(): Color {
-    return Color.parse("#52DA44");
+    return Color.parse("#9e66ff");
   }
 
   updateKpi(): void {
@@ -56,12 +56,12 @@ export class PedestrianBackupKpiViewController extends TrafficKpiViewController 
     const empty = this.emptyView;
     const tween = Transition.duration<any>(1000);
 
-    this.title!.text('East Palo Alto - Connected Devices');
+    this.title!.text('East Palo Alto - Prospective Devices');
     this.subtitle!.text('@ Network Towers');
 
     meter.value(meterValue, tween);
     empty.value(spaceValue, tween);
-    this.meterLegend!.text("Connected (" + meterValue + ")");
+    this.meterLegend!.text("Prospective (" + meterValue + ")");
     this.clearLegend!.text("Clear (" + spaceValue + ")");
     title.text(Math.round(100 * meterValue / ((meterValue + spaceValue) || 1)) + "%");
   }
