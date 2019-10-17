@@ -41,6 +41,7 @@ public class CityAgent extends AbstractAgent
 			this.info.put(msg.get("id").stringValue(), msg);
 		});
 	
+	
 	public void didStart()
 	{
 		System.out.println(nodeUri() + " didStart");

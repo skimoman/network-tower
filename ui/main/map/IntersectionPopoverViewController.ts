@@ -162,47 +162,27 @@ export class IntersectionPopoverViewController extends PopoverViewController {
       .flexGrow(1)
       .overflow('auto');
 
-	const canvas=  this._contentView!.append('div')
-        .height(100)
-        .append('canvas')
-        .position('relative');
+	const chartCanvas = view.append('div')
+		.append("canvas")
+		.position('relative');
 
-      const chart = new ChartView()
-        .bottomAxis("time")
-        .leftAxis("linear")
-        .bottomGesture(true)
-        .leftDomainPadding([0.1, 0.1])
-        .topGutter(0)
-        .rightGutter(0)
-        .bottomGutter(20)
-        .leftGutter(-1)
-        .domainColor("#4a4a4a")
-        .tickMarkColor("#4a4a4a")
-        .font("12px sans-serif")
-        .textColor("#4a4a4a");
-      canvas.append(chart);
-
-      const futureColor = Color.rgb('#6c6c6c').alpha(0.2);
-      const plot0 = new AreaGraphView()
-        .fill(futureColor);
-      chart.addPlot(plot0);
-
-      const plot1 = new LineGraphView()
-        .stroke(futureColor)
-        .strokeWidth(1);
-      chart.addPlot(plot1);
-
-      const plot2 = new LineGraphView()
-        .stroke("#00a6ed")
-        .strokeWidth(1);
-      chart.addPlot(plot2);
-
-      this._chartChildView[1] = {
-        chartVew: chart,
-        plot0View: plot0,
-        plot1View: plot1,
-        plot2View: plot2,
-      };
+	const chart = new ChartView()
+	  .bottomAxis("time")
+      .leftAxis("0...100")
+      .domainColor("#28CA8C")
+      .tickMarkColor("#28CA8C")
+      .font("12px sans-serif")
+      .textColor("#28CA8C");
+	chartCanvas.append(chart);
+	const plot = new LineGraphView()
+      .stroke("#50e3c2")
+      .strokeWidth(2);
+	chart.addPlot(plot);
+	// function addToPlot(key, value) {
+	  // const time = key.numberValue();
+	  // const v = value.get("count").numberValue(0);
+	  // plot.insertDatum({x: time, y: v, opacity: void 0});
+	// }
 	
     // const footer = view.append('footer')
     //   .textAlign('right');

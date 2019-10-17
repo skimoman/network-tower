@@ -4,6 +4,7 @@ import swim.api.SwimLane;
 import swim.api.SwimResident;
 import swim.api.agent.AbstractAgent;
 import swim.api.downlink.EventDownlink;
+import swim.api.lane.CommandLane;
 import swim.api.lane.MapLane;
 import swim.api.lane.ValueLane;
 import swim.collections.HashTrieMap;
@@ -20,13 +21,13 @@ public class TowerAgent extends AbstractAgent
 
 	static final String NETWORK_HOST = "localhost:9001";
 	static final Uri NETWORK_HOST_URI = Uri.parse(NETWORK_HOST);
+	private TimerRef timer;
 	
 	EventDownlink<Value> bandwidthLink;
 	EventDownlink<Value> droppedPacketLink;
 	EventDownlink<Value> connectedClientLink;
 	EventDownlink<Value> infoLink;
 
-	
 	@SwimLane("tower/bandwidth")
 	public ValueLane<Value> bandwidth;
 	
@@ -42,6 +43,19 @@ public class TowerAgent extends AbstractAgent
 			System.out.println(nodeUri().toString() + n);
 			command("/city/EastPaloAlto", "addTower", n.updatedSlot("id", getProp("id")));
 		});
+	
+//	@SwimLane("minutesSincePublish")
+//	  ValueLane<Value> minutes = this.<Value>valueLane()
+//	      .didSet((n, o) -> {
+//	        System.out.println((n * 10) + " seconds since last event");
+//	      });
+//
+//	@SwimLane("publish")
+//	  CommandLane publish = this.commandLane()
+//	      .onCommand(v -> {
+//	        this.minutes.set(0);
+//	        resetTimer();
+//	      });
 	
 	@Override
 	public void didStart() 
@@ -62,6 +76,20 @@ public class TowerAgent extends AbstractAgent
 		unlinkConnectedClient();
 		unlinkInfo();
 	}
+	
+//	private void resetTimer() {
+//		cancelTimer();
+//		this.timer = setTimer(10000, () -> {
+//		this.minutes.set(this.minutes.get() + 1);
+//		this.timer.reschedule(10000);
+//		});
+//	}
+//
+//	private void cancelTimer() {
+//		if (this.timer != null) {
+//			this.timer.cancel();
+//		}
+//	}
 
 	void didSetRemoteBandwidth(Value newValue) 
 	{
