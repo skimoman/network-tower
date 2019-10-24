@@ -56,13 +56,13 @@ export class ActiveSessionsKpiViewController extends TrafficKpiViewController {
     const empty = this.emptyView;
     const tween = Transition.duration<any>(1000);
 
-    this.title!.text('East Palo Alto - Active Sessions');
+    this.title!.text('EPA - Active Sessions');
     this.subtitle!.text('@ Network Towers');
 
     meter.value(meterValue, tween);
     empty.value(spaceValue, tween);
     this.meterLegend!.text("Active (" + meterValue + ")");
     this.clearLegend!.text("Inactive (" + spaceValue + ")");
-    title.text(Math.round(100 * meterValue / ((meterValue + spaceValue) || 1)) + "%");
+    title.text(Math.round(100 * meterValue / ((meterValue + spaceValue) || 1)) + "");
   }
 }

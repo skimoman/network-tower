@@ -56,13 +56,13 @@ export class PedestrianBackupKpiViewController extends TrafficKpiViewController 
     const empty = this.emptyView;
     const tween = Transition.duration<any>(1000);
 
-    this.title!.text('East Palo Alto - Connected Devices');
+    this.title!.text('EPA - Connected Devices');
     this.subtitle!.text('@ Network Towers');
 
     meter.value(meterValue, tween);
     empty.value(spaceValue, tween);
-    this.meterLegend!.text("Connected (" + meterValue + ")");
+    this.meterLegend!.text("Linked (" + meterValue + ")");
     this.clearLegend!.text("Clear (" + spaceValue + ")");
-    title.text(Math.round(100 * meterValue / ((meterValue + spaceValue) || 1)) + "%");
+    title.text(Math.round(100 * meterValue / ((meterValue + spaceValue) || 1)) + "");
   }
 }

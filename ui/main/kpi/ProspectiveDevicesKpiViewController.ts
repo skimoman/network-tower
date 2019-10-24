@@ -56,13 +56,13 @@ export class ProspectiveDevicesKpiViewController extends TrafficKpiViewControlle
     const empty = this.emptyView;
     const tween = Transition.duration<any>(1000);
 
-    this.title!.text('East Palo Alto - Prospective Devices');
+    this.title!.text('EPA - Prospective Devices');
     this.subtitle!.text('@ Network Towers');
 
     meter.value(meterValue, tween);
     empty.value(spaceValue, tween);
-    this.meterLegend!.text("Prospective (" + meterValue + ")");
+    this.meterLegend!.text("Usable (" + meterValue + ")");
     this.clearLegend!.text("Clear (" + spaceValue + ")");
-    title.text(Math.round(100 * meterValue / ((meterValue + spaceValue) || 1)) + "%");
+    title.text(Math.round(100 * meterValue / ((meterValue + spaceValue) || 1)) + "");
   }
 }

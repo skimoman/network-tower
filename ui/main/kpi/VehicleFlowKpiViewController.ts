@@ -73,6 +73,6 @@ export class VehicleFlowKpiViewController extends TrafficKpiViewController {
     empty.value(spaceValue, tween);
     this.meterLegend!.text("Mbps (" + meterValue + ")");
     this.clearLegend!.text("Clear (" + spaceValue + ")");
-    title.text(Math.round(100 * meterValue / ((meterValue + spaceValue) || 1)) + "%");
+    title.text(Math.round(1000 * meterValue / ((meterValue + spaceValue) || 1)) + "");
   }
 }

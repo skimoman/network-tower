@@ -20,7 +20,7 @@ import {AreaGraphView, ChartView, LineGraphView} from "@swim/chart";
 import {IntersectionInfo} from "./IntersectionModel";
 
 export class IntersectionPopoverViewController extends PopoverViewController {
-  /** @hodden */
+  /** @hidden */
   _info: IntersectionInfo;
   /** @hidden */
   _nodeRef: NodeRef;
@@ -30,6 +30,9 @@ export class IntersectionPopoverViewController extends PopoverViewController {
 
   /** @hidden */
   _linkMode?: ValueDownlink<Value, AnyValue>;
+  
+  /** @hidden */
+  _linkTransmitRecieve?: MapDownlink<Value, Value, AnyValue, AnyValue>;
 
   /** @hidden */
   _linkPhase?: MapDownlink<Value, Value, AnyValue, AnyValue>;
@@ -174,20 +177,41 @@ export class IntersectionPopoverViewController extends PopoverViewController {
       .font("12px sans-serif")
       .textColor("#28CA8C");
 	chartCanvas.append(chart);
+	
 	const plot = new LineGraphView()
       .stroke("#50e3c2")
       .strokeWidth(2);
 	chart.addPlot(plot);
-	// function addToPlot(key, value) {
-	  // const time = key.numberValue();
-	  // const v = value.get("count").numberValue(0);
-	  // plot.insertDatum({x: time, y: v, opacity: void 0});
+	
+	// function addToPlot(k: Value, v: Value) {
+		// const key = k.numberValue() as number;
+		// const value = v.get("count").numberValue(0);
+		// plot.insertDatum({x: key, y: value, opacity: void 0});
 	// }
 	
+	// function removeFromPlot(k: Value) {
+		// const remove = k.numberValue();
+		// plot.removeDatum(remove);
+	// }
+
+	// const transmitRecieveLink = this._nodeRef.downlinkMap()
+		// .hostUri("warp://localhost:9001")
+		// .nodeUri("/tower/master")
+		// .laneUri("transmitRecieve")
+		// .didUpdate(function(key, value) {
+			// addToPlot(key, value);
+		// })
+		// .didRemove(function(key) {
+			// removeFromPlot(key);
+		// })
+		// .open();
+	
     // const footer = view.append('footer')
-    //   .textAlign('right');
+      // .textAlign('right');
     // footer.append('span').text('test');
   }
+  
+  
 
   popoverDidShow(view: any): void {
     this.linkLatency();
@@ -247,6 +271,54 @@ export class IntersectionPopoverViewController extends PopoverViewController {
       this._linkMode = undefined;
     }
   }
+  
+  // didUpdateTransmitRecieve(k: Value, v: Value) {
+  // {
+	// const key = k.numberValue() as number;
+	// const value = v.get("count").numberValue(0);
+	
+	// const canvas=  this._contentView!.append('div')
+        // .height(50)
+        // .append('canvas')
+        // .position('relative');
+	
+	// const chart = new ChartView()
+	  // .bottomAxis("time")
+      // .leftAxis("0...100")
+      // .domainColor("#28CA8C")
+      // .tickMarkColor("#28CA8C")
+      // .font("12px sans-serif")
+      // .textColor("#28CA8C");
+	// canvas.append(chart);
+	
+	// const plot = new LineGraphView()
+      // .stroke("#50e3c2")
+      // .strokeWidth(2);
+	// chart.addPlot(plot);
+	
+	// function addToPlot(k: Value, v: Value) {
+		// plot.insertDatum({x: key, y: value, opacity: void 0});
+	// }
+	
+	// function removeFromPlot(k: Value) {
+		// const remove = k.numberValue();
+		// plot.removeDatum(remove);
+	// }
+	  // if(!this._linkTransmitRecieve) 
+	  // {
+		// this._linkTransmitRecieve = this._nodeRef.downlinkMap()
+		// .nodeUri("/tower/master")
+		// .laneUri("transmitRecieve")
+		// .didUpdate(function(key, value) {
+			// addToPlot(key, value);
+		// })
+		// .didRemove(function(key) {
+			// removeFromPlot(key);
+		// })
+		// .open();
+	  // }
+  // }
+  // }
 
   didUpdatePhase(k: Value, v: Value) {
     const key = k.numberValue() as number;
@@ -378,5 +450,4 @@ export class IntersectionPopoverViewController extends PopoverViewController {
       this._linkFuture = undefined;
     }
   }
-
 }

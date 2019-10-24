@@ -126,7 +126,7 @@ export class IntersectionMapViewController extends MapGraphicViewController<Inte
   protected didUpdateDetector(key: Value, value: Value): void {
     //console.log("intersection " + this._info.id + " didUpdateDetector " + key + ": " + value);
     const detectorId = key.toAny();
-    const occupied = value.booleanValue(false);
+    const occupied = value.booleanValue(true);
 
     const childViews = this.childViews;
     for (let i = 0, n = childViews.length; i < n ; i += 1) {
