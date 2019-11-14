@@ -16,7 +16,6 @@ import swim.server.ServerLoader;
 import swim.structure.Record;
 import swim.structure.Value;
 
-
 public class NetworkPlane extends AbstractPlane
 {
 	private static List<Double> lngs = new ArrayList<>();

@@ -23,16 +23,27 @@ export class TrafficMapView extends MapGraphicView {
 
   constructor() {
     super();
-    this.intersectionMarkerColor.setState(Color.parse("#2DB391"));
+	this.intersectionMarkerColor.setState(Color.parse("#071013"));
 	// Original Color: #00a6ed
-    this.pedestrianMarkerColor.setState(Color.parse("#c200fa"));
-    this.redLightColor.setState(Color.parse("#a50f21"));
-    this.yellowLightColor.setState(Color.parse("#fccf20"));
-    this.greenLightColor.setState(Color.parse("#54e218"));
+	this.pedestrianMarkerColor.setState(Color.parse("#c200fa"));
+	this.redLightColor.setState(Color.parse("#a50f21"));
+	this.yellowLightColor.setState(Color.parse("#fccf20"));
+	this.greenLightColor.setState(Color.parse("#54e218"));
   }
 
   get viewController(): TrafficMapViewController | null {
     return this._viewController;
+  }
+  
+  setMeterValue(val: number) 
+  {
+	if(val > 67)
+		return Color.parse("#41CC16");
+	if(val < 67 && val > 34)
+		return Color.parse("#F7E923");
+	if(val < 34)
+		return Color.parse("#CC1010");
+	return Color.parse("#00A6ED");
   }
 
   @MemberAnimator(Color)

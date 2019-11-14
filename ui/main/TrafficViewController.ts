@@ -97,7 +97,7 @@ export class TrafficViewController extends HtmlViewController {
         .backgroundColor(Color.parse("#070813").alpha(0.33))
         .backdropFilter("blur(2px)")
         .pointerEvents("auto");
-    const vehicleFlowKpiViewController = new VehicleFlowKpiViewController(this._nodeRef, trafficMapView);
+    const vehicleFlowKpiViewController = new VehicleFlowKpiViewController(this._nodeRef, trafficMapView, trafficMapView);
     vehicleFlowKpi.setViewController(vehicleFlowKpiViewController);
 	
 		const activeSessionsKpi = kpiStack.append("div")

@@ -20,17 +20,20 @@ import {SignalPhase} from "../map/IntersectionModel";
 import {IntersectionMapView} from "../map/IntersectionMapView";
 import {ApproachMapView} from "../map/ApproachMapView";
 import {TrafficKpiViewController} from "./TrafficKpiViewController";
+import {TrafficMapView} from "../map/TrafficMapView";
 
 export class VehicleFlowKpiViewController extends TrafficKpiViewController {
   /** @hidden */
   _nodeRef: NodeRef;
   /** @hidden */
   _trafficMapView: MapGraphicView;
+  _tmv: TrafficMapView;
 
-  constructor(nodeRef: NodeRef, trafficMapView: MapGraphicView) {
+  constructor(nodeRef: NodeRef, trafficMapView: MapGraphicView, tmv: TrafficMapView) {
     super();
     this._nodeRef = nodeRef;
     this._trafficMapView = trafficMapView;
+	this._tmv = tmv;
   }
   
   get primaryColor(): Color {
@@ -39,6 +42,7 @@ export class VehicleFlowKpiViewController extends TrafficKpiViewController {
 
   updateKpi(): void {
     let meterValue = Math.floor(Math.random() * 99) + 1;
+	this._tmv.intersectionMarkerColor.setState(this._tmv.setMeterValue(meterValue));
     let spaceValue = Math.floor(Math.random() * 99) + 1;
     const intersectionMapViews = this._trafficMapView.childViews;
     for (let i = 0; i < intersectionMapViews.length; i += 1) {
